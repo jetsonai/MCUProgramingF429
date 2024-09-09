@@ -1,0 +1,39 @@
+int count=0;
+char inputString[256];
+char outputString[256];
+  
+void UartTestStart(void)
+{
+  setvbuf(stdin, NULL, _IONBF, 0);
+  UART_Receive_IT();
+
+  memset(inputString, 0, sizeof(inputString));
+  memset(outputString, 0, sizeof(outputString));
+
+  sprintf(outputString, 
+ "\r\n====================\r\n   Hello Cortex-M          \r\n====================\r\n\r\n");
+  UART_TxString((uint8_t *)outputString);
+
+}
+
+------------------------------
+void doUartTest2(void)
+{
+    if (UART_RxCheck())
+    {
+        HAL_Delay(3);
+        memset(inputString, 0, sizeof(inputString));
+        memset(outputString, 0, sizeof(outputString));
+
+        UART_RxString((uint8_t *)inputString);
+        printf("rx:%s\n", inputString);
+        
+        sprintf(outputString, "\r\n [input string: %d]:  %s\r\n"
+                , count++, inputString);
+        //UART_TxString(&huart3, (uint8_t *)outputString);
+        UART_TxString((uint8_t *)outputString);
+    }
+
+}
+
+
