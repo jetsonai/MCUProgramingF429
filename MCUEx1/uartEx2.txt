@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <string.h>
+
 int count=0;
 char inputString[256];
 char outputString[256];
