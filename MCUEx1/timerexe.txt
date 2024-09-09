@@ -1,0 +1,48 @@
+extern TIM_HandleTypeDef htim9;
+
+uint8_t ClockFlag = PIN_SET_OFF;
+
+void setTimerTest(uint8_t bOn)
+{
+	HAL_TIM_Base_Start_IT(&htim9);
+
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	ClockFlag = (ClockFlag==PIN_SET_OFF)? PIN_SET_ON : PIN_SET_OFF;
+}
+
+---------------------
+
+void doTestProc(void)
+{ 
+    switch (TestAppMode) { 
+    case TESTAPP_ONOFF_ALL:
+        setAllLed(bLedOn);
+        break;   
+    case TESTAPP_SHIFT:
+        doLedShiftTest();
+        break;   
+		   
+#ifdef EXE_INTERRUPT			       
+    case TESTAPP_TIMER:
+       doHalfLed(ClockFlag);
+      break;
+#endif
+...
+--------------------------
+
+void doHalfLed(uint8_t bOn)
+{
+  uint8_t hFlag = (bOn==PIN_SET_OFF)? PIN_SET_ON : PIN_SET_OFF;
+  SetLedOn(0, bOn);
+  SetLedOn(1, hFlag);
+  SetLedOn(2, bOn);
+  SetLedOn(3, hFlag);
+  SetLedOn(4, bOn);
+  SetLedOn(5, hFlag);
+  SetLedOn(6, bOn);
+  SetLedOn(7, hFlag);
+}
+------------------------
