@@ -10,27 +10,10 @@ void setTimerTest(uint8_t bOn)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	ClockFlag = (ClockFlag==PIN_SET_OFF)? PIN_SET_ON : PIN_SET_OFF;
+    ClockFlag = (ClockFlag==PIN_SET_OFF)? PIN_SET_ON : PIN_SET_OFF;
+    doHalfLed(ClockFlag);
 }
 
----------------------
-
-void doTestProc(void)
-{ 
-    switch (TestAppMode) { 
-    case TESTAPP_ONOFF_ALL:
-        setAllLed(bLedOn);
-        break;   
-    case TESTAPP_SHIFT:
-        doLedShiftTest();
-        break;   
-		   
-#ifdef EXE_INTERRUPT			       
-    case TESTAPP_TIMER:
-       doHalfLed(ClockFlag);
-      break;
-#endif
-...
 --------------------------
 
 void doHalfLed(uint8_t bOn)
