@@ -24,16 +24,4 @@
   ssd1306_UpdateScreen();
 #endif  
 
-** while 문 안에
---------
-#ifdef OLED_TEST  
-    ssd1306_SetCursor(0,0);
-    ssd1306_WriteString("Hello", Font_11x18, White);
-    ssd1306_UpdateScreen();
-    HAL_Delay(1000);
-    
-    ssd1306_SetCursor(0,0);
-    ssd1306_WriteString("World", Font_11x18, White);
-    ssd1306_UpdateScreen();
-    HAL_Delay(1000);    
-#endif 
+
