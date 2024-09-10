@@ -1,3 +1,5 @@
+extern ADC_HandleTypeDef hadc1;
+
 uint32_t ReadAdcVal(void)
 {
   uint32_t adc_Val=0;
