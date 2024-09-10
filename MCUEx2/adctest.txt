@@ -20,6 +20,22 @@ void doADC1Test(void)
     PRINTF("doADC1Test get adcVal : %d\n", adcVal);  
 }
 
+------------------------------------------------
+
+
+#define DEF_DAC_VAL 2800
+
+void doDACTest(void)
+{
+    HAL_DAC_SetValue(&hdac, DAC_CHANNEL_2, DAC_ALIGN_12B_R, dacVal);
+    if(dacVal < 4096){
+        dacVal++;
+    }else{
+        dacVal=DEF_DAC_VAL;
+    }    
+    HAL_Delay(1);   
+}
+
 void setDACTest(void)
 { 
     dacVal = DEF_DAC_VAL;
