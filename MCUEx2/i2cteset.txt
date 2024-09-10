@@ -1,0 +1,39 @@
+#define OLED_TEST
+
+...
+
+#ifdef OLED_TEST  
+#include "ssd1306.h"
+#include "fonts.h"  
+#endif
+
+----------------------------------
+
+#ifdef OLED_TEST  
+  ssd1306_Init();
+  HAL_Delay(1000);
+  ssd1306_Fill(Black);
+  ssd1306_UpdateScreen();
+
+  ssd1306_SetCursor(0,0);
+  ssd1306_WriteString("Hello",Font_11x18,White);
+  ssd1306_SetCursor(0,18);
+  ssd1306_WriteString("MCU Program.",Font_7x10,White);
+  ssd1306_DrawFilledRectangle(0, 28, 5, 18, White);
+  ssd1306_DrawCircle(60,50, 10, White);
+  ssd1306_UpdateScreen();
+#endif  
+
+** while 문 안에
+--------
+#ifdef OLED_TEST  
+    ssd1306_SetCursor(0,0);
+    ssd1306_WriteString("Hello", Font_11x18, White);
+    ssd1306_UpdateScreen();
+    HAL_Delay(1000);
+    
+    ssd1306_SetCursor(0,0);
+    ssd1306_WriteString("World", Font_11x18, White);
+    ssd1306_UpdateScreen();
+    HAL_Delay(1000);    
+#endif 
