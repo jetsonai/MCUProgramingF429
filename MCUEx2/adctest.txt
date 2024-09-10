@@ -1,0 +1,19 @@
+uint32_t ReadAdcVal(void)
+{
+  uint32_t adc_Val=0;
+  
+  HAL_ADC_Start(&hadc1);
+  HAL_ADC_PollForConversion(&hadc1, 10);
+  
+  adc_Val = HAL_ADC_GetValue(&hadc1);   
+  
+  HAL_ADC_Stop(&hadc1);
+    
+   return adc_Val;
+}
+
+void doADC1Test(void)
+{
+    adcVal = ReadAdcVal();
+    PRINTF("doADC1Test get adcVal : %d\n", adcVal);  
+}
