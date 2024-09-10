@@ -19,3 +19,10 @@ void doADC1Test(void)
     adcVal = ReadAdcVal();
     PRINTF("doADC1Test get adcVal : %d\n", adcVal);  
 }
+
+void setDACTest(void)
+{ 
+    dacVal = DEF_DAC_VAL;
+    HAL_DAC_Start(&hdac, DAC_CHANNEL_2);
+}
+
